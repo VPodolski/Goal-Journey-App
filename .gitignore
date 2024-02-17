@@ -1,0 +1,23 @@
+.idea
+.vs
+.vscode
+\bin
+\obj
+*/node_modules
+*/*/node_modules
+packages
+
+*.user
+*.orig
+\dist
+*package-lock.json
+*yarn.lock
+\.config
+\build
+
+*.csproj.DotSettings
+appsettings.development.local.json
+
+# Ignore InfoLog and ErrorLog
+ErrorLog-*.txt
+InfoLog-*.txt
