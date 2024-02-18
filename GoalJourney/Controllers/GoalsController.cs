@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using GoalJourney.Models;
+using GoalJourney.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GoalJourney.Controllers;
 
@@ -6,33 +8,42 @@ namespace GoalJourney.Controllers;
 [ApiController]
 public class GoalsController : ControllerBase
 {
-    [HttpPost]
-    public object Create(object model)
+    private IGoalService goalService;
+
+    public GoalsController(IGoalService goalService)
     {
-        
+        this.goalService = goalService;
+    }
+    
+    [HttpPost]
+    public GoalModel Create(GoalModel model)
+    {
+        return goalService.Create(model);
     }
     
     [HttpPatch]
-    public object Update(object model)
+    public GoalModel Update(GoalModel model)
     {
-        
+        return goalService.Update(model);
     }
     
     [HttpGet("{id}")]
-    public object Get(int id)
+    public GoalModel? Get(int id)
     {
-        
+        return goalService.Get(id);
     }
     
     [HttpGet]
-    public object GetAll()
+    public List<GoalModel> GetAll()
     {
-        
+        return goalService.Get();
     }
     
     [HttpDelete("{id}")]
-    public object Delete(int id)
+    public IActionResult Delete(int id)
     {
-        
+        goalService.Delete(id);
+
+        return Ok();
     }
 }

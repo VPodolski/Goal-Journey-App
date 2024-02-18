@@ -1,6 +1,6 @@
 ﻿namespace GoalJourney.Models.Enums;
 
-public enum GoalType
+public enum GoalTypes
 {
     Daily, Weekly, Monthly
 }
