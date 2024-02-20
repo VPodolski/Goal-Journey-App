@@ -1,4 +1,4 @@
-﻿namespace GoalJourney.Models.Enums;
+﻿namespace GoalJourney.API.Models.Enums;
 
 public enum GoalTypes
 {

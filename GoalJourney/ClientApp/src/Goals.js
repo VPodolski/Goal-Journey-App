@@ -4,7 +4,7 @@ const Goals = () => {
     const [allGoals, setGoals] = useState([]);
     const getGoals = async () => {
         
-    const response = await fetch("https://localhost:7005/WeatherForecast", {
+    const response = await fetch("https://localhost:7005/api/Goals", {
         method: "GET",
         headers: {
             "Access-Control-Allow-Origin": "*",

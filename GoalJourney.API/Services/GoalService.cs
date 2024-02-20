@@ -1,8 +1,8 @@
-﻿using GoalJourney.Data;
-using GoalJourney.Models;
-using GoalJourney.Services.Interfaces;
+﻿using GoalJourney.API.Data;
+using GoalJourney.API.Models;
+using GoalJourney.API.Services.Interfaces;
 
-namespace GoalJourney.Services;
+namespace GoalJourney.API.Services;
 
 public class GoalService: IGoalService
 {

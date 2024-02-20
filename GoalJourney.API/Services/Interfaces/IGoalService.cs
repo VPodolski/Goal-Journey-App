@@ -1,6 +1,6 @@
-﻿using GoalJourney.Models;
+﻿using GoalJourney.API.Models;
 
-namespace GoalJourney.Services.Interfaces;
+namespace GoalJourney.API.Services.Interfaces;
 
 public interface IGoalService
 {

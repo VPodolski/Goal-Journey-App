@@ -1,14 +1,8 @@
-using GoalJourney.Data;
-using GoalJourney.Services;
-using GoalJourney.Services.Interfaces;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddTransient<IGoalService, GoalService>();
-builder.Services.AddSingleton<GoalDataContext>();
 
 var app = builder.Build();
 

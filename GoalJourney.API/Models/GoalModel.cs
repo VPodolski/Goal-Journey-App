@@ -1,6 +1,6 @@
-﻿using GoalJourney.Models.Enums;
+﻿using GoalJourney.API.Models.Enums;
 
-namespace GoalJourney.Models;
+namespace GoalJourney.API.Models;
 
 public class GoalModel
 {

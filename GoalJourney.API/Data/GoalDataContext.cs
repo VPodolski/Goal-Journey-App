@@ -1,6 +1,6 @@
-﻿using GoalJourney.Models;
+﻿using GoalJourney.API.Models;
 
-namespace GoalJourney.Data;
+namespace GoalJourney.API.Data;
 
 public class GoalDataContext
 {

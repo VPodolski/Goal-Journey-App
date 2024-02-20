@@ -1,8 +1,8 @@
-﻿using GoalJourney.Models;
-using GoalJourney.Services.Interfaces;
+﻿using GoalJourney.API.Models;
+using GoalJourney.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GoalJourney.Controllers;
+namespace GoalJourney.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
