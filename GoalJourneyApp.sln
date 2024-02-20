@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoalJourney", "GoalJourney\GoalJourney.csproj", "{EC0711D4-30E3-4162-B49E-83935B427C8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoalJourney.API", "GoalJourney.API\GoalJourney.API.csproj", "{10791CD9-7E28-490C-BB77-832EB9664C87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC0711D4-30E3-4162-B49E-83935B427C8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC0711D4-30E3-4162-B49E-83935B427C8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC0711D4-30E3-4162-B49E-83935B427C8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC0711D4-30E3-4162-B49E-83935B427C8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10791CD9-7E28-490C-BB77-832EB9664C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10791CD9-7E28-490C-BB77-832EB9664C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10791CD9-7E28-490C-BB77-832EB9664C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10791CD9-7E28-490C-BB77-832EB9664C87}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
