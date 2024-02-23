@@ -3,14 +3,13 @@
 const Goals = () => {
     const [allGoals, setGoals] = useState([]);
     const getGoals = async () => {
-        
-    const response = await fetch("https://localhost:7005/api/Goals", {
-        method: "GET",
-        headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "text/plain"
-        }
-    });
+        const response = await fetch("https://localhost:7005/api/Goals", {
+            method: "GET",
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "text/plain"
+            }
+        });
 
         if (response.ok) {
             const goals = await response.json();

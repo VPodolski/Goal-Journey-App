@@ -1,5 +1,6 @@
 ﻿using GoalJourney.API.Data;
 using GoalJourney.API.Models;
+using GoalJourney.API.Models.Enums;
 using GoalJourney.API.Services.Interfaces;
 
 namespace GoalJourney.API.Services;
@@ -8,8 +9,52 @@ public class GoalService: IGoalService
 {
     private readonly GoalDataContext dataContext;
 
+    private List<GoalModel> defaultGoals = new List<GoalModel>
+    {
+        new()
+        {
+            Id = 1,
+            Description = "Goal 1",
+            Type = GoalTypes.Daily,
+            IsDone = false
+        },
+        new()
+        {
+            Id = 2,
+            Description = "Goal 2",
+            Type = GoalTypes.Daily,
+            IsDone = false
+        },
+        new()
+        {
+            Id = 3,
+            Description = "Goal 3",
+            Type = GoalTypes.Daily,
+            IsDone = false
+        },
+        new()
+        {
+            Id = 4,
+            Description = "Goal 4",
+            Type = GoalTypes.Daily,
+            IsDone = false
+        },
+        new()
+        {
+            Id = 5,
+            Description = "Goal 5",
+            Type = GoalTypes.Daily,
+            IsDone = false
+        }
+    };
+
     public GoalService(GoalDataContext dataContext)
     {
+        if (dataContext.Goals.Count == 0)
+        {
+            dataContext.Goals = defaultGoals;
+        }
+        
         this.dataContext = dataContext;
     }
 

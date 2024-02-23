@@ -10,4 +10,9 @@ public class GoalDataContext
     {
         Goals = new List<GoalModel>();
     }
+    
+    public GoalDataContext(List<GoalModel> goals)
+    {
+        Goals = goals;
+    }
 }

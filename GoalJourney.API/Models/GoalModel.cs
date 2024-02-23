@@ -9,6 +9,11 @@ public class GoalModel
         Description = description;
     }
 
+    public GoalModel()
+    {
+        
+    }
+
     public int Id { get; set; }
     
     public GoalTypes Type { get; set; }
