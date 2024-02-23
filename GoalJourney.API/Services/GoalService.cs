@@ -14,6 +14,7 @@ public class GoalService: IGoalService
         new()
         {
             Id = 1,
+            Title = "Goal 1",
             Description = "Goal 1",
             Type = GoalTypes.Daily,
             IsDone = false
@@ -21,28 +22,32 @@ public class GoalService: IGoalService
         new()
         {
             Id = 2,
-            Description = "Goal 2",
+            Title = "Goal 2",
+            Description = "Goal 2 description",
             Type = GoalTypes.Daily,
             IsDone = false
         },
         new()
         {
             Id = 3,
-            Description = "Goal 3",
+            Title = "Goal 3",
+            Description = "Goal 3 description",
             Type = GoalTypes.Daily,
             IsDone = false
         },
         new()
         {
             Id = 4,
-            Description = "Goal 4",
+            Title = "Goal 4",
+            Description = "Goal 4 description",
             Type = GoalTypes.Daily,
             IsDone = false
         },
         new()
         {
             Id = 5,
-            Description = "Goal 5",
+            Title = "Goal 5",
+            Description = "Goal 5 description",
             Type = GoalTypes.Daily,
             IsDone = false
         }
@@ -60,9 +65,11 @@ public class GoalService: IGoalService
 
     public GoalModel Create(GoalModel model)
     {
-        var lastGoal = dataContext.Goals.LastOrDefault();
-
-        model.Id = lastGoal != null ? lastGoal.Id + 1 : 1;
+        if (model.Id == null)
+        {
+            var lastGoal = dataContext.Goals.LastOrDefault();
+            model.Id = lastGoal != null ? lastGoal.Id + 1 : 1;
+        }
 
         dataContext.Goals.Add(model);
 

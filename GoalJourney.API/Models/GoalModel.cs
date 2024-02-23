@@ -4,9 +4,13 @@ namespace GoalJourney.API.Models;
 
 public class GoalModel
 {
-    public GoalModel(string description)
+    public GoalModel(int id, string title, GoalTypes type, string description)
     {
+        Id = id;
+        Title = title;
         Description = description;
+        Type = type;
+        IsDone = false;
     }
 
     public GoalModel()
@@ -14,7 +18,9 @@ public class GoalModel
         
     }
 
-    public int Id { get; set; }
+    public int? Id { get; set; }
+    
+    public string Title { get; set; }
     
     public GoalTypes Type { get; set; }
     
