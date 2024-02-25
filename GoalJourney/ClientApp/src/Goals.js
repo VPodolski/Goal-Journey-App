@@ -94,27 +94,25 @@ const Goals = () => {
     }, []);
     
     return (
-        <div className={"container text-center"}>
-            <div className={"goals-creation-area"}>
-                <h2>Goals creating</h2>
-                <label>Title</label>
-                <input id={"title-input"} type={"text"}/>
-                
-                <label>Goal Type</label>
-                <div>
-                    <select id={"type-select"}>
-                        <option value={0}>Daily</option>
-                        <option value={1}>Weekly</option>
-                        <option value={2}>Monthly</option>
-                    </select>
+        <div className={"row align-items-start justify-content-center"}>
+            <div className={"goals-creation-area col-4 alert alert-info"}>
+                <h2>New goal</h2>
+                <label htmlFor={"title-input"} className={"form-label"}>Title</label>
+                <input id={"title-input"} type={"text"} className={"form-control"}/>
+                <label htmlFor={"type-select"} className={"form-label"}>Goal Type</label>
+                <select id={"type-select"} className={"form-select"}>
+                    <option value={0}>Daily</option>
+                    <option value={1}>Weekly</option>
+                    <option value={2}>Monthly</option>
+                </select>
+                <label htmlFor={"description-textarea"} className={"form-label"}>Description</label>
+                <textarea id={"description-textarea"} className={"form-control"}/>
+                <br/>
+                <div className={"d-grid gap-2 d-md-flex justify-content-md-end"}>
+                    <button onClick={() => addGoal()} type={"button"} className={"btn btn-success"}>Add</button>
                 </div>
-                <label>Description</label>
-                <div>
-                    <textarea id={"description-textarea"}/>
-                </div>
-                <button onClick={() => addGoal()}>Add</button>
             </div>
-            <div className={"goals-list-area"}>
+            <div className={"goals-list-area col-5"}>
                 {allGoals.map(g => 
                     <GoalItem 
                         key={g.id}
@@ -132,11 +130,15 @@ export default Goals;
 
 const GoalItem = ({goal, onDeleteGoal, onUpdateGoal}) => {
     return (
-        <div id={"goal-id-"+goal.id} className={"goal-type-"+goal.type + " goal-done-"+goal.isDone}>
+        <div id={"goal-id-"+goal.id} className={"goal-type-"+goal.type + " goal-done-"+goal.isDone + " alert alert-success"}>
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
-            <button onClick={() => onUpdateGoal(goal)}>Update</button>
-            <button onClick={() => onDeleteGoal(goal.id)}>Delete</button>
+            <div className={"d-grid gap-2 d-md-block"}>
+                <button className={"btn btn-success"}>Done</button>
+                <button onClick={() => onUpdateGoal(goal)} className={"btn btn-warning"}>Update</button>
+                <button onClick={() => onDeleteGoal(goal.id)} className={"btn btn-danger"}>Delete</button>
+            </div>
+            
         </div>
     );
 }
