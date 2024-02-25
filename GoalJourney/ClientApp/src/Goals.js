@@ -64,6 +64,30 @@ const Goals = () => {
              await getGoals();
         }
     }
+
+    const updateGoal = async (oldGoal) => {
+        const title = document.querySelector('#title-input').value;
+        const description = document.querySelector('#description-textarea').value;
+        const type = parseInt(document.querySelector('#type-select').value);
+        oldGoal.title = title;
+        oldGoal.description = description;
+        oldGoal.type = type;
+
+        const headers = new Headers();
+        headers.set('Content-Type', 'application/json');
+
+        const options = {
+            method: 'PATCH',
+            headers: headers,
+            body: JSON.stringify(oldGoal)
+        };
+
+        const result = await fetch(url+"/Goals", options);
+        
+        if (result.ok){
+            await getGoals();
+        }
+    }
     
     useEffect(() => {
         getGoals();
@@ -95,6 +119,7 @@ const Goals = () => {
                         key={g.id}
                         goal={g}
                         onDeleteGoal = {deleteGoal}
+                        onUpdateGoal = {updateGoal}
                     >
                     </GoalItem>)}
             </div>
@@ -104,12 +129,12 @@ const Goals = () => {
 
 export default Goals;
 
-const GoalItem = ({goal, onDeleteGoal}) => {
+const GoalItem = ({goal, onDeleteGoal, onUpdateGoal}) => {
     return (
         <div id={"goal-id-"+goal.id} className={"goal-type-"+goal.type + " goal-done-"+goal.isDone}>
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
-            <button>Edit</button>
+            <button onClick={() => onUpdateGoal(goal)}>Update</button>
             <button onClick={() => onDeleteGoal(goal.id)}>Delete</button>
         </div>
     );

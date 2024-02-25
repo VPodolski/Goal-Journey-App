@@ -85,6 +85,7 @@ public class GoalService: IGoalService
             return Create(model);
         }
 
+        modelToUpdate.Title = model.Title;
         modelToUpdate.Description = model.Description;
         modelToUpdate.Type = model.Type;
         modelToUpdate.IsDone = model.IsDone;
