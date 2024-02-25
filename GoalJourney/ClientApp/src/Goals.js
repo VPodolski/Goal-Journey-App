@@ -50,6 +50,20 @@ const Goals = () => {
 
         return [];
     }
+
+    const deleteGoal = async (id) => {
+        const response = await fetch(url+"/Goals/"+id, {
+            method: "Delete",
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Content-Type": "text/plain"
+            }
+        });
+
+        if (response.ok) {
+             await getGoals();
+        }
+    }
     
     useEffect(() => {
         getGoals();
@@ -79,11 +93,9 @@ const Goals = () => {
                 {allGoals.map(g => 
                     <GoalItem 
                         key={g.id}
-                        id={g.id} 
-                        title={g.title} 
-                        description={g.description} 
-                        type={g.type} 
-                        isDone={g.isDone}>
+                        goal={g}
+                        onDeleteGoal = {deleteGoal}
+                    >
                     </GoalItem>)}
             </div>
         </div>
@@ -92,11 +104,13 @@ const Goals = () => {
 
 export default Goals;
 
-const GoalItem = ({id, title, description, type, isDone}) => {
+const GoalItem = ({goal, onDeleteGoal}) => {
     return (
-        <div id={"goal-id-"+id} className={"goal-type-"+type + " goal-done-"+isDone}>
-            <h3>{title}</h3>
-            <p>{description}</p>
+        <div id={"goal-id-"+goal.id} className={"goal-type-"+goal.type + " goal-done-"+goal.isDone}>
+            <h3>{goal.title}</h3>
+            <p>{goal.description}</p>
+            <button>Edit</button>
+            <button onClick={() => onDeleteGoal(goal.id)}>Delete</button>
         </div>
     );
 }
