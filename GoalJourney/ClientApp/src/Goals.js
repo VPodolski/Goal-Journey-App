@@ -94,11 +94,12 @@ const Goals = () => {
     }, []);
     
     return (
-        <div>
+        <div className={"container text-center"}>
             <div className={"goals-creation-area"}>
+                <h2>Goals creating</h2>
                 <label>Title</label>
                 <input id={"title-input"} type={"text"}/>
-                <p>Goals creating</p>
+                
                 <label>Goal Type</label>
                 <div>
                     <select id={"type-select"}>
