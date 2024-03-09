@@ -13,6 +13,26 @@ code {
   border-color: #1861ac;
 }
 
+.goal.mode-read {
+  .read-mode {
+    display: block;
+  }
+  
+  .edit-mode {
+    display: none;
+  }
+}
+
+.goal.mode-edit {
+  .read-mode {
+    display: none;
+  }
+
+  .edit-mode {
+    display: block;
+  }
+}
+
 .goal {
   .button-block {
     display: flex;

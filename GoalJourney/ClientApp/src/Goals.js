@@ -13,6 +13,7 @@ const Goals = () => {
             title: title,
             description: description,
             type: type,
+            mode: "read",
             isDone: false
         }
 
@@ -43,7 +44,10 @@ const Goals = () => {
 
         if (response.ok) {
             const goals = await response.json();
-            setGoals(goals);
+
+            goals.forEach(function(goal) {
+                goal.mode = "read";
+            });
 
             return goals;
         }
@@ -61,14 +65,26 @@ const Goals = () => {
         });
 
         if (response.ok) {
-             await getGoals();
+            setGoals(await getGoals());
+        }
+    }
+
+    const setEditModeFor = async (goal) =>{
+        let index = allGoals.indexOf(goal);
+
+        if (index != null) {
+            document.getElementById('type-select-' + goal.id).selectedIndex = goal.type;
+            
+            goal.mode = "edit";
+            allGoals[index] = goal;
+            setGoals(allGoals.slice());
         }
     }
 
     const updateGoal = async (oldGoal) => {
-        const title = document.querySelector('#title-input').value;
-        const description = document.querySelector('#description-textarea').value;
-        const type = parseInt(document.querySelector('#type-select').value);
+        const title = document.querySelector('#title-input-' + oldGoal.id).value;
+        const description = document.querySelector('#description-textarea-' + oldGoal.id).value;
+        const type = parseInt(document.querySelector('#type-select-' + oldGoal.id).value);
         oldGoal.title = title;
         oldGoal.description = description;
         oldGoal.type = type;
@@ -85,14 +101,18 @@ const Goals = () => {
         const result = await fetch(url+"/Goals", options);
         
         if (result.ok){
-            await getGoals();
+            setGoals(await getGoals());
         }
     }
-    
-    useEffect(() => {
-        getGoals();
+
+    useEffect( () => {
+        const fetchGoals = async () => {
+            setGoals(await getGoals());
+        };
+
+        fetchGoals().catch(console.error);
     }, []);
-    
+
     return (
         <div className={"row align-items-start justify-content-center"}>
             <div className={"goals-creation-area col-4 alert alert-info"}>
@@ -119,6 +139,7 @@ const Goals = () => {
                         goal={g}
                         onDeleteGoal = {deleteGoal}
                         onUpdateGoal = {updateGoal}
+                        onEditGoal = {setEditModeFor}
                     >
                     </GoalItem>)}
             </div>
@@ -128,16 +149,35 @@ const Goals = () => {
 
 export default Goals;
 
-const GoalItem = ({goal, onDeleteGoal, onUpdateGoal}) => {
+const GoalItem = ({goal, onDeleteGoal, onUpdateGoal, onEditGoal}) => {
     return (
-        <div id={"goal-id-"+goal.id} className={"goal goal-type-"+goal.type + " goal-done-"+goal.isDone + " alert alert-success"}>
-            <h3>{goal.title}</h3>
-            <p>{goal.description}</p>
-            <div className={"button-block"}>
-                <button className={"btn btn-success button-done"}>Done</button>
-                <div className={"right-buttons"}>
-                    <button onClick={() => onUpdateGoal(goal)} className={"btn btn-warning"}>Edit</button>
-                    <button onClick={() => onDeleteGoal(goal.id)} type={"button"} className={"btn btn-danger"}>Delete</button>
+        <div id={"goal-id-"+goal.id} className={"goal" + " mode-" + goal.mode + " type-" + goal.type + " done-" + goal.isDone + " alert alert-success"}>
+            <div className={"read-mode"}>
+                <h3>{goal.title}</h3>
+                <div>{goal.description}</div>
+                <br/>
+                <div className={"button-block"}>
+                    <button className={"btn btn-success button-done"}>Done</button>
+                    <div className={"right-buttons"}>
+                        <button onClick={() => onEditGoal(goal)} className={"btn btn-warning"}>Edit</button>
+                        <button onClick={() => onDeleteGoal(goal.id)} className={"btn btn-danger"}>Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div className={"edit-mode"}>
+                <label htmlFor={"title-input"} className={"form-label"}>Title</label>
+                <input id={"title-input-" + goal.id} type={"text"} defaultValue={goal.title} className={"form-control"}/>
+                <label htmlFor={"type-select"} className={"form-label"}>Goal Type</label>
+                <select id={"type-select-" + goal.id} className={"form-select"}>
+                    <option value={0}>Daily</option>
+                    <option value={1}>Weekly</option>
+                    <option value={2}>Monthly</option>
+                </select>
+                <label htmlFor={"description-textarea"} className={"form-label"}>Description</label>
+                <textarea id={"description-textarea-" + goal.id} className={"form-control"} defaultValue={goal.description}/>
+                <br/>
+                <div className={"button-block"}>
+                    <button onClick={() => onUpdateGoal(goal)} className={"btn btn-success button-done"}>Update</button>
                 </div>
             </div>
         </div>

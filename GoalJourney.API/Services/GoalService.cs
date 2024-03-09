@@ -79,6 +79,7 @@ public class GoalService: IGoalService
     public GoalModel Update(GoalModel model)
     {
         var modelToUpdate = dataContext.Goals.FirstOrDefault(m => m.Id == model.Id);
+        var index = Array.IndexOf(dataContext.Goals.ToArray(), modelToUpdate);
 
         if (modelToUpdate == null)
         {
@@ -90,9 +91,8 @@ public class GoalService: IGoalService
         modelToUpdate.Type = model.Type;
         modelToUpdate.IsDone = model.IsDone;
 
-        dataContext.Goals.Remove(modelToUpdate);
-        dataContext.Goals.Add(modelToUpdate);
-        
+        dataContext.Goals[index] = modelToUpdate;
+
         return modelToUpdate;
     }
 
