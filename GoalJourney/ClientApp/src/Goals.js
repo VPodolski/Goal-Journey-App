@@ -130,15 +130,16 @@ export default Goals;
 
 const GoalItem = ({goal, onDeleteGoal, onUpdateGoal}) => {
     return (
-        <div id={"goal-id-"+goal.id} className={"goal-type-"+goal.type + " goal-done-"+goal.isDone + " alert alert-success"}>
+        <div id={"goal-id-"+goal.id} className={"goal goal-type-"+goal.type + " goal-done-"+goal.isDone + " alert alert-success"}>
             <h3>{goal.title}</h3>
             <p>{goal.description}</p>
-            <div className={"d-grid gap-2 d-md-block"}>
-                <button className={"btn btn-success"}>Done</button>
-                <button onClick={() => onUpdateGoal(goal)} className={"btn btn-warning"}>Update</button>
-                <button onClick={() => onDeleteGoal(goal.id)} className={"btn btn-danger"}>Delete</button>
+            <div className={"button-block"}>
+                <button className={"btn btn-success button-done"}>Done</button>
+                <div className={"right-buttons"}>
+                    <button onClick={() => onUpdateGoal(goal)} className={"btn btn-warning"}>Edit</button>
+                    <button onClick={() => onDeleteGoal(goal.id)} type={"button"} className={"btn btn-danger"}>Delete</button>
+                </div>
             </div>
-            
         </div>
     );
 }

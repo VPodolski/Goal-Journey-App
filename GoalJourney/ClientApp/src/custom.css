@@ -12,3 +12,21 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.goal {
+  .button-block {
+    display: flex;
+
+    .button-done {
+      margin-right: auto;
+    }
+    
+    .right-buttons {
+      button {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+
